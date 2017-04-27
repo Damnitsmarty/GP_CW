@@ -1,20 +1,7 @@
-﻿Build started 27-Apr-17 15:27:03.
-     1>Project "C:\Users\fluf9\Desktop\Lab4\GP_CW\GP_CW.vcxproj" on node 2 (Rebuild target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Display.cpp main.cpp MainGame.cpp Mesh.cpp obj_loader.cpp Shader.cpp Texture.cpp
-         Texture.cpp
-         Shader.cpp
-         obj_loader.cpp
-     1>c:\users\fluf9\desktop\lab4\gp_cw\obj_loader.cpp(378): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-         Mesh.cpp
-         MainGame.cpp
-         main.cpp
-         Display.cpp
-         Generating Code...
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:prompt stb_image.c
-         stb_image.c
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\fluf9\Desktop\Lab4\Debug\GP_CW.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\fluf9\Desktop\Lab4\Debug\GP_CW.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\fluf9\Desktop\Lab4\Debug\GP_CW.lib" /MACHINE:X86 Debug\Display.obj
+﻿Build started 27-Apr-17 18:04:50.
+     1>Project "C:\Users\fluf9\Desktop\GP_CW\GP_CW\GP_CW.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\fluf9\Desktop\GP_CW\Debug\GP_CW.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\fluf9\Desktop\GP_CW\Debug\GP_CW.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\fluf9\Desktop\GP_CW\Debug\GP_CW.lib" /MACHINE:X86 Debug\Display.obj
          Debug\main.obj
          Debug\MainGame.obj
          Debug\Mesh.obj
@@ -22,9 +9,9 @@
          Debug\Shader.obj
          Debug\stb_image.obj
          Debug\Texture.obj
-         GP_CW.vcxproj -> C:\Users\fluf9\Desktop\Lab4\Debug\GP_CW.exe
-     1>Done Building Project "C:\Users\fluf9\Desktop\Lab4\GP_CW\GP_CW.vcxproj" (Rebuild target(s)).
+         GP_CW.vcxproj -> C:\Users\fluf9\Desktop\GP_CW\Debug\GP_CW.exe
+     1>Done Building Project "C:\Users\fluf9\Desktop\GP_CW\GP_CW\GP_CW.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:05.04
+Time Elapsed 00:00:00.36

@@ -26,6 +26,7 @@ private:
 
 	void initSystems();
 	void processInput();
+	void HandleKeyboardInput(SDL_KeyboardEvent e);
 	void gameLoop();
 	void drawGame(Shader* shader);
 
