@@ -6,7 +6,7 @@
 #include "Mesh.h"
 #include "Texture.h"
 #include "transform.h"
-
+#include "GameObject.h"
 enum class GameState{PLAY, EXIT};
 
 class MainGame
@@ -36,6 +36,7 @@ private:
 	Mesh mesh1;
 	Mesh mesh2;
 	Mesh mesh3;
+	std::vector<GameObject> gos;
 
 	Camera myCamera;
 
