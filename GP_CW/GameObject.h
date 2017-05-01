@@ -7,9 +7,10 @@
 class GameObject
 {
 public:
-	GameObject(const char* modelname, const char* texname, 
+	GameObject(string name,const char* modelname, const char* texname, 
 		Camera* cam, Shader* shader)
 	{
+		this->name = name;
 		this->cam = cam;
 		this->shader = shader;
 
@@ -36,6 +37,7 @@ public:
 		tex->Bind(0);
 		mesh.draw();
 	}
+	string name;
 	Texture* tex;
 	Transform transform;
 	Mesh mesh;
