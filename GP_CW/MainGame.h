@@ -6,7 +6,7 @@
 #include "Mesh.h"
 #include "Texture.h"
 #include "transform.h"
-
+#include "GameObject.h"
 enum class GameState{PLAY, EXIT};
 
 class MainGame
@@ -18,10 +18,14 @@ public:
 	void run();
 
 private:
+	GameState _gameState;
+
+	Display _gameDisplay;
 	Shader* m_shader;
-	Texture* m_texture1;
-	Texture* m_texture2;
-	Texture* m_texture3;
+	Camera myCamera;
+	std::vector<GameObject*> gos;
+
+	float counter;
 
 
 	void initSystems();
@@ -30,16 +34,9 @@ private:
 	void gameLoop();
 	void drawGame(Shader* shader);
 
-	Display _gameDisplay;
-	GameState _gameState;
 
-	Mesh mesh1;
-	Mesh mesh2;
-	Mesh mesh3;
 
-	Camera myCamera;
 
-	float counter;
 
 
 };

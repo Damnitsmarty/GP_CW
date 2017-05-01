@@ -2,7 +2,7 @@
 #include "Camera.h"
 #include <iostream>
 #include <string>
-
+#include "GameObject.h"
 
 Transform transform;
 
@@ -10,15 +10,10 @@ MainGame::MainGame()
 {
 	_gameState = GameState::PLAY;
 	Display* _gameDisplay = new Display(); //new display
-    Mesh* mesh1();
-	Mesh* mesh2();
-	Mesh* mesh3();
 }
 
 MainGame::~MainGame()
 {
-	delete m_texture1;
-	delete m_texture2;
 	delete m_shader;
 }
 
@@ -30,21 +25,10 @@ void MainGame::run()
 
 void MainGame::initSystems()
 {
+	//init display
 	_gameDisplay.initDisplay(); 
 	
-	//load shader
-	m_shader = new Shader("../res/shader");
-	//load models
-	mesh1.loadModel("../res/monkey3.obj");
-	mesh2.loadModel("../res/monkey3.obj");
-	mesh3.loadModel("../res/notebook.obj");
-
-	//load textures
-	m_texture1 = new Texture("../res/rock.jpg"); //load texture
-	m_texture2 = new Texture("../res/bricks.jpg"); //load texture
-	m_texture3 = new Texture("../res/Water.jpg"); //load texture
-
-
+	//init camera
 	myCamera.initCamera(
 		glm::vec3(0, 0, -5),										//position
 		70.0f,														//fov
@@ -53,8 +37,18 @@ void MainGame::initSystems()
 		1000.0f														//far clip plane
 		);
 
-	//initialize counter
-	counter = 0.0f;
+	//load shader
+	m_shader = new Shader("../res/shader");
+
+	//load GameObjects
+	gos.push_back(new GameObject("../res/monkey3.obj", "../res/rock.jpg", &myCamera, m_shader));
+	gos.back()->transform.SetPos(5, 0, 3);
+
+	gos.push_back(new GameObject("../res/monkey3.obj", "../res/rock.jpg", &myCamera, m_shader));
+	gos.back()->transform.SetPos(0, 0, 3);
+
+	gos.push_back(new GameObject("../res/Rock1.obj", "../res/rock.jpg", &myCamera, m_shader));
+	gos.back()->transform.SetPos(-5, 0, 3);
 }
 
 void MainGame::gameLoop()
@@ -87,15 +81,9 @@ void MainGame::processInput()
 		case SDL_MOUSEMOTION:
 			//check that left mouse button is pressed before handing values
 			if (evnt.motion.state & SDL_BUTTON_LMASK) {
-				printf("%i %i\n", evnt.motion.xrel, evnt.motion.yrel);
 				myCamera.inputInfo.mouseMotionX = evnt.motion.xrel;
 				myCamera.inputInfo.mouseMotionY = evnt.motion.yrel;
 			}
-			else {
-				myCamera.inputInfo.mouseMotionX = 0;
-				myCamera.inputInfo.mouseMotionY = 0;
-			}
-
 			break;
 		}
 	}
@@ -137,36 +125,11 @@ void MainGame::HandleKeyboardInput(SDL_KeyboardEvent e) {
 void MainGame::drawGame(Shader* shader)
 {
 	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
-	
-
 	shader->Bind();
-	//Draw rock model
-	transform.SetPos(glm::vec3(5.0, 0.0, 3.0));
-	transform.SetRot(glm::vec3(0.0, counter * -2, 0.0));
-	transform.SetScale(glm::vec3(0.8, 0.8, 0.8));
-	shader->Update(transform, myCamera);
-
-	m_texture1->Bind(0);
-	mesh1.draw();
-
-
-	//Draw monkey model
-	transform.SetPos(glm::vec3(-5.0, 0.0, 3.0));
-	transform.SetRot(glm::vec3(0.0, counter * 2, 0.0));
-	transform.SetScale(glm::vec3(0.8,0.8,0.8));
-	shader->Update(transform, myCamera);
-
-	m_texture2->Bind(0);
-	mesh2.draw();
-
-	//Draw notebook model
-	transform.SetPos(glm::vec3(0.0, 0.0, 3.0));
-	transform.SetRot(glm::vec3(0.0, counter * 2, 0.0));
-	transform.SetScale(glm::vec3(0.8, 0.8, 0.8));
-	shader->Update(transform, myCamera);
-
-	m_texture3->Bind(0);
-	mesh3.draw();
+	for (int i = 0; i < gos.size(); i++)
+	{
+		gos[i]->Draw();
+	}
 
 	counter = counter + 0.01f;
 				

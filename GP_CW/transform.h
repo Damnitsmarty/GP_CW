@@ -2,12 +2,21 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
-#include "camera.h"
+//#include "camera.h"
 
 struct Transform
 {
 public:
-	Transform(const glm::vec3& pos = glm::vec3(), const glm::vec3& rot = glm::vec3(), const glm::vec3& scale = glm::vec3(1.0f, 1.0f, 1.0f))
+	///<summary>
+	/// Initializes the Transform
+	///</summary>
+	///<param name="pos">Position of the transform</param>
+	///<param name="rot">Rotation of the transform</param>
+	///<param name="scale"> Scale of the transform</param>
+	Transform(
+		const glm::vec3& pos = glm::vec3(), 
+		const glm::vec3& rot = glm::vec3(), 
+		const glm::vec3& scale = glm::vec3(1.0f, 1.0f, 1.0f))
 	{
 		this->pos = pos;
 		this->rot = rot;
@@ -33,14 +42,28 @@ public:
 
 		return VP * M;//camera.GetViewProjection() * GetModel();
 	}*/
-
+	///<summary>Gets the Transform's position</summary>
 	inline glm::vec3* GetPos() { return &pos; } //getters
+	///<summary>Gets the Transform's rotation</summary>
 	inline glm::vec3* GetRot() { return &rot; }
+	///<summary>Gets the Transform's scale</summary>
 	inline glm::vec3* GetScale() { return &scale; }
 
-	inline void SetPos(glm::vec3& pos) { this->pos = pos; } // setters
+	///<summary>Sets the Transform's position</summary>
+	inline void SetPos(glm::vec3& pos) { this->pos = pos; }
+	///<summary>Sets the Transform's position</summary>
+	inline void SetPos(float x, float y, float z) { this->pos = glm::vec3(x, y, z); }
+
+	///<summary>Sets the Transform's rotation</summary>
 	inline void SetRot(glm::vec3& rot) { this->rot = rot; }
+	///<summary>Sets the Transform's rotation</summary>
+	inline void SetRot(float x, float y, float z) { this->rot = glm::vec3(x, y, z); }
+
+	///<summary>Sets the Transform's scale</summary>
 	inline void SetScale(glm::vec3& scale) { this->scale = scale; }
+	///<summary>Sets the Transform's scale</summary>
+	inline void SetScale(float x, float y, float z) { this->scale = glm::vec3(x, y, z); }
+
 protected:
 private:
 	glm::vec3 pos;
