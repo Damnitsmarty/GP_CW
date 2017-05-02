@@ -1,6 +1,7 @@
 c:\users\fluf9\desktop\gp_cw\gp_cw\debug\vc140.pdb
 c:\users\fluf9\desktop\gp_cw\gp_cw\debug\vc140.idb
 c:\users\fluf9\desktop\gp_cw\gp_cw\debug\display.obj
+c:\users\fluf9\desktop\gp_cw\gp_cw\debug\gameobject.obj
 c:\users\fluf9\desktop\gp_cw\gp_cw\debug\main.obj
 c:\users\fluf9\desktop\gp_cw\gp_cw\debug\maingame.obj
 c:\users\fluf9\desktop\gp_cw\gp_cw\debug\mesh.obj
@@ -8,7 +9,7 @@ c:\users\fluf9\desktop\gp_cw\gp_cw\debug\obj_loader.obj
 c:\users\fluf9\desktop\gp_cw\gp_cw\debug\shader.obj
 c:\users\fluf9\desktop\gp_cw\gp_cw\debug\texture.obj
 c:\users\fluf9\desktop\gp_cw\gp_cw\debug\stb_image.obj
-c:\users\fluf9\desktop\gp_cw\gp_cw\debug\gameobject.obj
+c:\users\fluf9\desktop\gp_cw\gp_cw\debug\scene.obj
 c:\users\fluf9\desktop\gp_cw\debug\gp_cw.ilk
 c:\users\fluf9\desktop\gp_cw\debug\gp_cw.exe
 c:\users\fluf9\desktop\gp_cw\debug\gp_cw.pdb
