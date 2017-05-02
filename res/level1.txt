@@ -1,7 +1,8 @@
 ﻿{{ Setup scene with 3 game objects }}
-
+SHADER("../res/shader");
 CAM(
 	(0,0,-5),	{{position}}
+	{{TODO: implement cam rotation}}
 	70.0,		{{fov}}
 	0.01,		{{near_clip}}
 	1000.0);	{{far_clip}}

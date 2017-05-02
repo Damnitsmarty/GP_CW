@@ -29,11 +29,17 @@ void MainGame::initSystems()
 	_gameDisplay.initDisplay(1920.0,960.0);
 
 	//load shader
-	m_shader = new Shader("../res/shader");
+	//m_shader = new Shader("../res/shader");
 
-	//load scene from file
-	scene = Scene(&_gameDisplay, m_shader);
-	scene.fromFile("../res/level1.txt");
+
+	//load scenes from file
+	scenes.push_back(new Scene(&_gameDisplay));
+	scenes.back()->fromFile("../res/level1.txt");
+	scenes.push_back(new Scene(&_gameDisplay));
+	scenes.back()->fromFile("../res/level2.txt");
+	//set active scene
+	activeScene = 0;
+
 }
 
 void MainGame::gameLoop()
@@ -41,7 +47,7 @@ void MainGame::gameLoop()
 	while (_gameState != GameState::EXIT)
 	{
 		processInput();
-		scene.cam.UpdatePosition();
+		scenes[activeScene]->cam.UpdatePosition();
 		drawGame(m_shader);
 	}
 }
@@ -66,8 +72,8 @@ void MainGame::processInput()
 		case SDL_MOUSEMOTION:
 			//check that left mouse button is pressed before handing values
 			if (evnt.motion.state & SDL_BUTTON_LMASK) {
-				scene.cam.inputInfo.mouseMotionX = evnt.motion.xrel;
-				scene.cam.inputInfo.mouseMotionY = evnt.motion.yrel;
+				scenes[activeScene]->cam.inputInfo.mouseMotionX = evnt.motion.xrel;
+				scenes[activeScene]->cam.inputInfo.mouseMotionY = evnt.motion.yrel;
 			}
 			break;
 		}
@@ -77,32 +83,47 @@ void MainGame::processInput()
 
 
 ///<summary>
-/// Processes Keyboard Input events by updating Camera's movement modifiers
+/// Processes Keyboard Input events
 ///</summary>
 ///<param name="e"> The KeyboardEvent to process </param>
 void MainGame::HandleKeyboardInput(SDL_KeyboardEvent e) {
-
+	
 	switch (e.keysym.sym) 
 	{
+		case SDLK_COMMA:
+			//prev scene
+			if (e.state == SDL_PRESSED) {
+				if (activeScene > 0) activeScene--;
+			}
+			break;
+		case SDLK_PERIOD:
+			//next scene
+			//exit if this was the last scene
+			if (e.state == SDL_PRESSED) {
+				if (activeScene < scenes.size() - 1) activeScene++;
+				else _gameState = GameState::EXIT;
+			}
+			break;
 		case SDLK_w:
-			scene.cam.inputInfo.W = (e.state == SDL_PRESSED);
+			scenes[activeScene]->cam.inputInfo.W = (e.state == SDL_PRESSED);
 			break;
 		case SDLK_s:
-			scene.cam.inputInfo.S = (e.state == SDL_PRESSED);
+			scenes[activeScene]->cam.inputInfo.S = (e.state == SDL_PRESSED);
 			break;
 		case SDLK_a:
-			scene.cam.inputInfo.A = (e.state == SDL_PRESSED);
+			scenes[activeScene]->cam.inputInfo.A = (e.state == SDL_PRESSED);
 			break;
 		case SDLK_d:
-			scene.cam.inputInfo.D = (e.state == SDL_PRESSED);
+			scenes[activeScene]->cam.inputInfo.D = (e.state == SDL_PRESSED);
 			break;
 		case SDLK_SPACE:
-			scene.cam.inputInfo.Space = (e.state == SDL_PRESSED);
+			scenes[activeScene]->cam.inputInfo.Space = (e.state == SDL_PRESSED);
 			break;
 		case SDLK_LCTRL:
-			scene.cam.inputInfo.Ctrl = (e.state == SDL_PRESSED);
+			scenes[activeScene]->cam.inputInfo.Ctrl = (e.state == SDL_PRESSED);
 			break;
 		default:
+			cout << e.keysym.sym << endl;
 			break;
 	}
 }
@@ -110,8 +131,7 @@ void MainGame::HandleKeyboardInput(SDL_KeyboardEvent e) {
 void MainGame::drawGame(Shader* shader)
 {
 	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
-	shader->Bind();
-	scene.Draw();
+	scenes[activeScene]->Draw();
 	counter = counter + 0.01f;
 				
 	glEnableClientState(GL_COLOR_ARRAY); 

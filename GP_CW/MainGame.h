@@ -23,7 +23,8 @@ private:
 
 	Display _gameDisplay;
 	Shader* m_shader;
-	Scene scene;
+	vector<Scene*> scenes;
+	size_t activeScene;
 
 	float counter;
 

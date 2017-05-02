@@ -1,18 +1,15 @@
 #include "Scene.h"
 
 
-Scene::Scene(Display* d,Shader* s)
+Scene::Scene(Display* d)
 {
 	this->display = d;
-	this->shader = s;
 }
 
 
 Scene::~Scene()
 {
-	//MainGame's job
-	//delete display;
-	//delete shader;
+	delete shader;
 }
 
 void Scene::fromFile(const std::string& fileName)
@@ -24,6 +21,7 @@ void Scene::fromFile(const std::string& fileName)
 
 void Scene::Draw()
 {
+	shader->Bind();
 	for (int i = 0; i < gos.size(); i++)
 	{
 		gos[i]->Draw();
@@ -63,12 +61,26 @@ string Scene::loadFile(const std::string & fileName)
 
 void Scene::parseScene(string text)
 {
+	smatch rMatch;
+	//
+	//	SHADER
+	//
+	regex rShaderExtract("SHADER\\((.*?)\\);");
+	if (regex_search(text, rMatch, rShaderExtract)) {
+		string shaderSettings = rMatch[1].str();
+		
+		shader = new Shader(nextString(shaderSettings));
+	}
+	else {
+		//TODO: 
+		//	no shader means the scene cannot be rendered
+		//	throw an exception
+	}
+
 	//
 	//	CAMERA
 	//
 	regex rCamExtract("CAM\\((.*?)\\);");
-	regex rCamSettings("\\d+(?:\\.\\d+)?");
-	smatch rMatch;
 
 	if (regex_search(text, rMatch, rCamExtract)) {
 		printf("Camera found. Extracting settings");

@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\res\level1.txt" />
+    <Text Include="..\res\level2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

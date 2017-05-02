@@ -11,7 +11,7 @@ class Scene
 {
 public:
 	Scene() {};
-	Scene(Display * d, Shader * s);
+	Scene(Display * d);
 	~Scene();
 	void fromFile(const string& fileName);
 
