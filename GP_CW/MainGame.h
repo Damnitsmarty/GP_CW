@@ -7,6 +7,7 @@
 #include "Texture.h"
 #include "transform.h"
 #include "GameObject.h"
+#include "Scene.h"
 enum class GameState{PLAY, EXIT};
 
 class MainGame
@@ -22,8 +23,7 @@ private:
 
 	Display _gameDisplay;
 	Shader* m_shader;
-	Camera myCamera;
-	std::vector<GameObject*> gos;
+	Scene scene;
 
 	float counter;
 

@@ -1,0 +1,28 @@
+﻿{{ Setup scene with 3 game objects }}
+
+CAM(
+	(0,0,-5),	{{position}}
+	70.0,		{{fov}}
+	0.01,		{{near_clip}}
+	1000.0);	{{far_clip}}
+
+GO(	"monkey1",				{{name}}
+	"../res/monkey3.obj",	{{mesh_file}}
+	"../res/rock.jpg",		{{tex_file}}
+	(5,0,3),				{{position}}
+	(0,0,0),				{{rotation(radians)}}
+	(1,1,1));				{{scale}}
+
+GO(	"monkey2",
+	"../res/monkey3.obj",
+	"../res/Water.jpg",
+	(0,0,3),
+	(0,3.14159,0),
+	(1,1,1));
+
+GO(	"monkey3",
+	"../res/monkey3.obj",
+	"../res/rock.jpg",
+	(-5,0,3),
+	(0,0,0),
+	(1,1,1));

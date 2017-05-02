@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Shader.h"
+using namespace std;
 class GameObject
 {
 public:

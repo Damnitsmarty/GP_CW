@@ -11,7 +11,7 @@ class Display
 public:
 	Display();
 	~Display();
-	void initDisplay();
+	void initDisplay(float width, float height);
 	void swapBuffer();
 	void clearDisplay(float r, float g, float b, float a);
 

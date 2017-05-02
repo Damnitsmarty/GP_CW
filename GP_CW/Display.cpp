@@ -4,8 +4,7 @@
 Display::Display()
 {
 	sdlWindow = nullptr; //initialise to generate null access violation for debugging. 
-	screenWidth = 1920.0f;
-	screenHeight = 960.0f; 
+	
 }
 
 Display::~Display()
@@ -38,8 +37,11 @@ void Display::clearDisplay(float r, float g, float b, float a)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear colour and depth buffer - set colour to colour defined in glClearColor
 }
 
-void Display::initDisplay()
+void Display::initDisplay(float width, float height)
 {
+	screenWidth = width;
+	screenHeight = height;
+
 	SDL_Init(SDL_INIT_EVERYTHING); //initalise everything
 
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8); //Min no of bits used to diplay colour
