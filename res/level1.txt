@@ -7,21 +7,21 @@ CAM(
 	0.01,		{{near_clip}}
 	1000.0);	{{far_clip}}
 
-GO(	"monkey1",				{{name}}
-	"../res/monkey3.obj",	{{mesh_file}}
-	"../res/rock.jpg",		{{tex_file}}
-	(5,0,3),				{{position}}
-	(0,0,0),				{{rotation(radians)}}
-	(1,1,1));				{{scale}}
+GO(	"sword",						{{name}}
+	"../res/SwordMinecraft.obj",	{{mesh_file}}
+	"../res/bricks.jpg",			{{tex_file}}
+	(5,0,3),						{{position}}
+	(1.57075,0,0),					{{rotation(radians)}}
+	(0.1,0.1,0.1));					{{scale}}
 
-GO(	"monkey2",
-	"../res/monkey3.obj",
+GO(	"legoman",
+	"../res/LEGO_Man.obj",
 	"../res/Water.jpg",
-	(0,0,3),
+	(0,-3,3),
 	(0,3.14159,0),
 	(1,1,1));
 
-GO(	"monkey3",
+GO(	"monkey",
 	"../res/monkey3.obj",
 	"../res/rock.jpg",
 	(-5,0,3),

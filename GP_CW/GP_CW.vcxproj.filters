@@ -90,11 +90,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="..\res\monkey3.obj">
-      <Filter>Resource Files</Filter>
-    </Object>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="..\res\level1.txt">
       <Filter>Resource Files</Filter>
     </Text>

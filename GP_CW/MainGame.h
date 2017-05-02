@@ -1,12 +1,7 @@
 #pragma once
 #include <SDL\SDL.h>
 #include <GL/glew.h>
-#include "Display.h" 
-#include "Shader.h"
-#include "Mesh.h"
-#include "Texture.h"
-#include "transform.h"
-#include "GameObject.h"
+#include "Display.h"
 #include "Scene.h"
 enum class GameState{PLAY, EXIT};
 
@@ -22,7 +17,6 @@ private:
 	GameState _gameState;
 
 	Display _gameDisplay;
-	Shader* m_shader;
 	vector<Scene*> scenes;
 	size_t activeScene;
 
@@ -33,7 +27,7 @@ private:
 	void processInput();
 	void HandleKeyboardInput(SDL_KeyboardEvent e);
 	void gameLoop();
-	void drawGame(Shader* shader);
+	void drawGame();
 
 
 

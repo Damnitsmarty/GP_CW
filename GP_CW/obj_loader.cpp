@@ -31,6 +31,7 @@ OBJModel::OBJModel(const std::string& fileName)
             
             const char* lineCStr = line.c_str();
             
+					size_t size = OBJIndices.size();
             switch(lineCStr[0])
             {
                 case 'v':
@@ -95,6 +96,7 @@ IndexedModel OBJModel::ToIndexedModel()
     
     for(unsigned int i = 0; i < numIndices; i++)
     {
+		std::cout << i << std::endl;
         OBJIndex* currentIndex = &OBJIndices[i];
         
         glm::vec3 currentPosition = vertices[currentIndex->vertexIndex];
@@ -395,8 +397,11 @@ static inline std::vector<std::string> SplitString(const std::string &s, char de
                 break;
             end++;
         }
-            
-        elems.push_back(s.substr(start, end - start));
+		//make sure we're not adding meaningless data (like empty strings)
+		std::string sub = s.substr(start, end - start);
+		if (sub.size() == 0) continue;
+
+        elems.push_back(sub);
         start = end + 1;
         end = start;
     }
