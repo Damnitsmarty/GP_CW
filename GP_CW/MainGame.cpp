@@ -1,8 +1,6 @@
 #include "MainGame.h"
-#include "Camera.h"
 #include <iostream>
 #include <string>
-#include "GameObject.h"
 #include "Scene.h"
 Transform transform;
 
@@ -14,7 +12,6 @@ MainGame::MainGame()
 
 MainGame::~MainGame()
 {
-	delete m_shader;
 }
 
 void MainGame::run()
@@ -28,8 +25,6 @@ void MainGame::initSystems()
 	//init display
 	_gameDisplay.initDisplay(1920.0,960.0);
 
-	//load shader
-	//m_shader = new Shader("../res/shader");
 
 
 	//load scenes from file
@@ -48,7 +43,7 @@ void MainGame::gameLoop()
 	{
 		processInput();
 		scenes[activeScene]->cam.UpdatePosition();
-		drawGame(m_shader);
+		drawGame();
 	}
 }
 
@@ -70,10 +65,19 @@ void MainGame::processInput()
 			HandleKeyboardInput(evnt.key);
 			break;
 		case SDL_MOUSEMOTION:
-			//check that left mouse button is pressed before handing values
+			//rotate the camera if the left button is pressed,
 			if (evnt.motion.state & SDL_BUTTON_LMASK) {
 				scenes[activeScene]->cam.inputInfo.mouseMotionX = evnt.motion.xrel;
 				scenes[activeScene]->cam.inputInfo.mouseMotionY = evnt.motion.yrel;
+			}
+			//rotate the models if the right button is pressed
+			else if(evnt.motion.state & SDL_BUTTON_RMASK) {
+				for (size_t i = 0; i < scenes[activeScene]->gos.size();i++) {
+					*scenes[activeScene]->gos[i]->transform.GetRot() += 
+						glm::vec3(evnt.motion.yrel / -500.0, evnt.motion.xrel / 500.0, 0);
+				}
+
+
 			}
 			break;
 		}
@@ -128,7 +132,7 @@ void MainGame::HandleKeyboardInput(SDL_KeyboardEvent e) {
 	}
 }
 
-void MainGame::drawGame(Shader* shader)
+void MainGame::drawGame()
 {
 	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
 	scenes[activeScene]->Draw();
